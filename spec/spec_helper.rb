@@ -1,1 +1,1 @@
-require 'fake_british_toponym'
+require "fake_british_toponym"

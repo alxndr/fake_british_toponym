@@ -1,7 +1,5 @@
 require "fake_british_toponym/version"
 
-module FakeBritishToponym
-
-
+class FakeBritishToponym < String
 
 end

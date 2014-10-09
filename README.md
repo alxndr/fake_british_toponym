@@ -1,4 +1,4 @@
-# FakeBritishToponyms
+# FakeBritishToponym
 
 Generate names of places that sound sorta British.
 
@@ -6,7 +6,7 @@ Generate names of places that sound sorta British.
 
 Add this line to your application's Gemfile:
 
-    gem 'fake_british_toponyms'
+    gem 'fake_british_toponym'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install fake_british_toponyms
+    $ gem install fake_british_toponym
 
 ## Usage
 

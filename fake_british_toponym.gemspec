@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fake_british_toponyms/version'
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include? lib
+require 'fake_british_toponym/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "fake_british_toponyms"
-  spec.version       = FakeBritishToponyms::VERSION
+  spec.name          = "fake_british_toponym"
+  spec.version       = FakeBritishToponym::VERSION
   spec.authors       = ["Alexander"]
   spec.email         = ["alxndr+fbt@gmail.com"]
   spec.description   = "Generates place names that sound sorta British."
   spec.summary       = "Generates place names that sound sorta British."
-  spec.homepage      = "https://github.com/alxndr/fake_british_toponyms"
+  spec.homepage      = "https://github.com/alxndr/fake_british_toponym"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
 end

@@ -1,6 +1,6 @@
 # FakeBritishToponyms
 
-TODO: Write a gem description
+Generate names of places that sound sorta British.
 
 ## Installation
 

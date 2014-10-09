@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "fake_british_toponyms"
   spec.version       = FakeBritishToponyms::VERSION
   spec.authors       = ["Alexander"]
-  spec.email         = ["alxndr+github@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.email         = ["alxndr+fbt@gmail.com"]
+  spec.description   = "Generates place names that sound sorta British."
+  spec.summary       = "Generates place names that sound sorta British."
+  spec.homepage      = "https://github.com/alxndr/fake_british_toponyms"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

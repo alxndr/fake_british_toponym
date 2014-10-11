@@ -1,24 +1,12 @@
 class FakeBritishToponym < String
   module CORPUS
 
-    def self.random_antefix
-      ANTEFIXES.sample
-    end
-
-    def self.random_prefix
-      PREFIXES.sample
-    end
-
-    def self.random_infix
-      INFIXES.sample
-    end
-
-    def self.random_suffix
-      SUFFIXES.sample
-    end
-
-    def self.random_postfix
-      POSTFIXES.sample
+    %w(ante pre in suf post).each do |type|
+      method_name = "random_#{type}fix"
+      define_method(method_name) do
+        CORPUS.const_get("#{type.upcase}FIXES").sample
+      end
+      module_function method_name.to_sym
     end
 
     ANTEFIXES = %w(

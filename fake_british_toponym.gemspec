@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "fake_british_toponym"
   spec.version       = FakeBritishToponym::VERSION
   spec.authors       = ["Alexander"]
-  spec.email         = ["alxndr+fbt@gmail.com"]
-  spec.description   = "Generates place names that sound sorta British."
-  spec.summary       = "Generates place names that sound sorta British."
+  spec.email         = ["alxndr+gem@gmail.com"]
+  spec.description   = "Generate place names that sound sorta British"
+  spec.summary       = "A basic class which creates a string that sounds like it could be a town in the British Isles."
   spec.homepage      = "https://github.com/alxndr/fake_british_toponym"
   spec.license       = "MIT"
 

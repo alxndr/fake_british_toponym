@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gem "probability"
 
@@ -10,6 +10,7 @@ end
 
 group :development, :test do
   gem "pry"
+  gem "rspec", "~>3.1.0"
 end
 
 gemspec

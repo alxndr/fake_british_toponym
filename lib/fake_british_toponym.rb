@@ -6,7 +6,7 @@ class FakeBritishToponym < String
 
   def initialize(**args)
     args[:modifier] = true unless args.has_key? :modifier
-    args[:min_syllables] ||= 2
+    args[:min_syllables] ||= 3
 
     super build_name(args[:min_syllables], args[:modifier])
   end
@@ -14,21 +14,16 @@ class FakeBritishToponym < String
   private
 
   def build_name(min_syllables, use_modifier)
-    pieces = []
+    syllables = []
 
-    pieces.push CORPUS.random_prefix.capitalize
-
-    min_syllables.times do
-      pieces.push pick_infix(pieces)
+    syllables.push CORPUS.random_prefix.capitalize
+    (min_syllables-2).times do
+      syllables.push pick_infix(syllables)
     end
+    add_suffix(syllables) if syllables.length == 1 || 3.in(10)
+    add_decoration(syllables) if use_modifier && 1.in(2)
 
-    add_suffix(pieces) if pieces.length == 1 || 3.in(10)
-
-    add_decoration(pieces) if use_modifier && 1.in(2)
-
-    name = pieces.join
-
-    name
+    syllables.join
   end
 
   def add_antefix(list)

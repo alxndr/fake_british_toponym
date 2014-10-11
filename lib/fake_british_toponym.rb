@@ -5,7 +5,9 @@ require "fake_british_toponym/corpus"
 class FakeBritishToponym < String
 
   # Make a String instance that sounds like a British place name.
-  # @param opts [Hash] use_modifier: true|false, min_syllables: Integer
+  # @param opts [Hash] optional configuration data
+  #          use_modifier: true|false, true considered a suggestion
+  #          min_syllables: Integer, lower bound on how long name should be
   # @return [String] instance
 
   def initialize(**opts)

@@ -4,11 +4,15 @@ require "fake_british_toponym/corpus"
 
 class FakeBritishToponym < String
 
-  def initialize(**args)
-    args[:modifier] = true unless args.has_key? :modifier
-    args[:min_syllables] ||= 3
+  # Make a String instance that sounds like a British place name.
+  # @param opts [Hash] use_modifier: true|false, min_syllables: Integer
+  # @return [String] instance
 
-    super build_name(args[:min_syllables], args[:modifier])
+  def initialize(**opts)
+    opts[:use_modifier] = true unless opts.has_key? :use_modifier
+    opts[:min_syllables] ||= 3
+
+    super build_name(opts[:min_syllables], opts[:use_modifier])
   end
 
   private
@@ -74,7 +78,7 @@ class FakeBritishToponym < String
   end
 
   def new_decoration_toponym
-    self.class.new modifier: false
+    self.class.new use_modifier: false
   end
 
   def doubled_last_letter_needed?(list, pick)

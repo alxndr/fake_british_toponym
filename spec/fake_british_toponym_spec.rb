@@ -14,13 +14,14 @@ describe FakeBritishToponym do
 
   describe "#initialize options" do
 
-    describe "modifier" do
+    describe "use_modifier" do
 
       describe "false" do
 
-        subject { Array.new(MANY) { FakeBritishToponym.new(modifier: false) } }
+        subject { Array.new(MANY) { FakeBritishToponym.new(use_modifier: false) } }
 
         it "should never be more than one word or include punctuation" do
+
           subject.each do |toponym|
             expect(toponym).to_not include " "
             expect(toponym).to_not include "-"
@@ -69,7 +70,7 @@ describe FakeBritishToponym do
 
       it "should return words of roughly appropriate length" do
         subject.each do |toponym|
-          expect(toponym.length).to be > length * 2
+          expect(toponym.length).to be >= length * 2
         end
       end
 

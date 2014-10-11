@@ -26,14 +26,14 @@ Or install it yourself as:
     $ pry
     [0] main » require "fake_british_toponym"
     => true
-    [0] main » FakeBritishToponym.new
-    => "Dunkirkton"
-    [0] main » FakeBritishToponym.new
-    => "Midnocktondeen Crossing"
-    [0] main » FakeBritishToponym.new
-    => "Port Aberglentun"
-    [0] main » FakeBritishToponym.new
-    => "Lymetunmore Bight"
+    [0] main » Array.new(5) { FakeBritishToponym.new }
+    => ["Abercastercesholm",
+     "Lymekirktunforth",
+     "South Gloutonbeck",
+     "Intonwich",
+     "Port Shrewsbeckhamp"]
+    [0] main » FakeBritishToponym.new(min_syllables: 5)
+    => "Lancotherglennock Castle"
 
 ...that's all, folks!
 

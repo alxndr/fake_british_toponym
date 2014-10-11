@@ -4,48 +4,75 @@ describe FakeBritishToponym do
 
   MANY = 10e3.to_i
 
-  it "should exist" do
-    expect(FakeBritishToponym).to be_truthy
+  describe "#initialize" do
+
+    subject { FakeBritishToponym.new }
+
+    it { is_expected.to be_a String }
+
   end
 
-  describe "options" do
+  describe "#initialize options" do
 
     describe "modifier" do
-      describe "when set to false" do
+
+      describe "false" do
+
+        subject { Array.new(MANY) { FakeBritishToponym.new(modifier: false) } }
+
         it "should never be more than one word or include punctuation" do
-          MANY.times do
-            toponym = FakeBritishToponym.new(modifier: false)
+          subject.each do |toponym|
             expect(toponym).to_not include " "
             expect(toponym).to_not include "-"
             expect(toponym).to_not include "'"
           end
         end
+
       end
 
-      it "should not contain obvious errors" do
-        DOUBLE_CAPITAL_REGEX = /{[A-Z]{2}/
-        DOUBLE_NONALPHA_REGEX = /[^[:alpha:]]{2}/
+      describe "true" do
 
-        MANY.times do
-          toponym = FakeBritishToponym.new(modifier: true)
-          [DOUBLE_CAPITAL_REGEX, DOUBLE_NONALPHA_REGEX].each do |regex|
-            expect(toponym).not_to match regex
-          end
-          [" -", "- ", " '", "' "].each do |bad_char_sequence|
-            expect(toponym).not_to include bad_char_sequence
+        subject { Array.new(MANY) { FakeBritishToponym.new(modifier: true) } }
+
+        it "should not have double capital letters" do
+          DOUBLE_CAPITAL_REGEX = /{[A-Z]{2}/
+          subject.each do |toponym|
+            expect(toponym).not_to match DOUBLE_CAPITAL_REGEX
           end
         end
+
+        it "should not have double punctuation/spaces" do
+          DOUBLE_NONALPHA_REGEX = /[^[:alpha:]]{2}/
+          subject.each do |toponym|
+            expect(toponym).not_to match DOUBLE_NONALPHA_REGEX
+          end
+        end
+
+        it "should not have invalid character sequences" do
+          # little redundant with the nonalpha test
+          subject.each do |toponym|
+            [" -", "- ", " '", "' "].each do |bad_char_sequence|
+              expect(toponym).not_to include bad_char_sequence
+            end
+          end
+        end
+
       end
+
     end
 
     describe "min_syllables" do
+
+      length = rand(10)
+
+      subject { Array.new(MANY) { FakeBritishToponym.new(min_syllables: length) } }
+
       it "should return words of roughly appropriate length" do
-        MANY.times do
-          length = rand(10)
-          toponym = FakeBritishToponym.new(min_syllables: length)
+        subject.each do |toponym|
           expect(toponym.length).to be > length * 2
         end
       end
+
     end
 
   end

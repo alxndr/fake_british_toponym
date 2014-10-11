@@ -18,10 +18,8 @@ class FakeBritishToponym < String
   private
 
   def build_name(min_syllables, use_modifier)
-    syllables = []
-
-    syllables.push CORPUS.random_prefix.capitalize
-    (min_syllables-2).times do
+    syllables = [ CORPUS.random_prefix.capitalize ]
+    (min_syllables-1).times do
       syllables.push pick_infix(syllables)
     end
     add_suffix(syllables) if syllables.length == 1 || 3.in(10)
@@ -39,19 +37,19 @@ class FakeBritishToponym < String
   end
 
   def add_postfix(list)
-    pick = CORPUS.random_postfix
-    case pick
+    postfix = CORPUS.random_postfix
+    case postfix
     when /^-/ # "-on-the-", "-upon-", etc
-      list.push pick
+      list.push postfix
       list.push new_decoration_toponym
     when "of"
-      list.push " #{pick} "
+      list.push " #{postfix} "
       list.push new_decoration_toponym
     when "'s"
-      list.push "#{pick} "
+      list.push "#{postfix} "
       list.push new_decoration_toponym
     else
-      list.push " #{pick.capitalize}"
+      list.push " #{postfix.capitalize}"
     end
   end
 
@@ -65,24 +63,24 @@ class FakeBritishToponym < String
 
   def pick_infix(list)
     begin
-      pick = CORPUS.random_infix
-    end while pick == list.last # try not to double up syllables
-    double_last_letter(list) if doubled_last_letter_needed?(list, pick)
-    pick
+      infix = CORPUS.random_infix
+    end while infix == list.last # try not to double up syllables
+    double_last_letter(list) if doubled_last_letter_needed?(list, infix)
+    infix
   end
 
   def pick_suffix(list)
-    pick = CORPUS.random_suffix
-    double_last_letter(list) if doubled_last_letter_needed?(list, pick)
-    pick
+    suffix = CORPUS.random_suffix
+    double_last_letter(list) if doubled_last_letter_needed?(list, suffix)
+    suffix
   end
 
   def new_decoration_toponym
     self.class.new use_modifier: false
   end
 
-  def doubled_last_letter_needed?(list, pick)
-    return false unless begins_with_vowel? pick
+  def doubled_last_letter_needed?(list, syllable)
+    return false unless begins_with_vowel? syllable
     return false if ends_with_vowel? list.last
     return false if ends_with_doubled_letters? list.last
     true

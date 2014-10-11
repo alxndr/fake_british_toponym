@@ -1,6 +1,7 @@
 # FakeBritishToponym
 
 [![Build Status](https://travis-ci.org/alxndr/fake_british_toponym.svg?branch=master)](https://travis-ci.org/alxndr/fake_british_toponym)
+[![Dependency Status](https://gemnasium.com/alxndr/fake_british_toponym.svg)](https://gemnasium.com/alxndr/fake_british_toponym)
 [![Code Climate](https://codeclimate.com/github/alxndr/fake_british_toponym/badges/gpa.svg)](https://codeclimate.com/github/alxndr/fake_british_toponym)
 [![Test Coverage](https://codeclimate.com/github/alxndr/fake_british_toponym/badges/coverage.svg)](https://codeclimate.com/github/alxndr/fake_british_toponym)
 

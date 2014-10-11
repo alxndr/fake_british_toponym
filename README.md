@@ -23,8 +23,17 @@ Or install it yourself as:
 
 ## Usage
 
-    FakeBritishToponym.new
-    # => "Port Aberglentun"
+    $ pry
+    [0] main » require "fake_british_toponym"
+    => true
+    [0] main » FakeBritishToponym.new
+    => "Dunkirkton"
+    [0] main » FakeBritishToponym.new
+    => "Midnocktondeen Crossing"
+    [0] main » FakeBritishToponym.new
+    => "Port Aberglentun"
+    [0] main » FakeBritishToponym.new
+    => "Lymetunmore Bight"
 
 ...that's all, folks!
 

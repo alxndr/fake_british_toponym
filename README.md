@@ -6,7 +6,7 @@ Generate names of places that sound sorta British.
 
 Add this line to your application's Gemfile:
 
-    gem 'fake_british_toponym'
+    gem "fake_british_toponym"
 
 And then execute:
 
@@ -18,7 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    FakeBritishToponym.new
+    # => "Port Aberglentun"
+
+...that's all, folks!
 
 ## Contributing
 

@@ -1,15 +1,17 @@
 require "probability"
-
 require "fake_british_toponym/corpus"
+
+# Ruby gem that generates fake British-sounding place names.
+# @author alxndr aka drwxrxrx
 
 class FakeBritishToponym < String
 
   # Make a String instance that sounds like a British place name.
-  # @param opts [Hash] optional configuration data
-  #          use_modifier: true|false, true considered a suggestion
-  #          min_syllables: Integer, lower bound on how long name should be
-  # @return [String] instance
-
+  # @param opts [Hash{Symbol: Number, Boolean}] optional configuration data.
+  #          available options:
+  #          use_modifier [Boolean] whether or not to use an ante/suffix.
+  #          true is considered a suggestion; false always omits one.
+  #          min_syllables: [Integer] lower bound on how long name should be.
   def initialize(**opts)
     opts[:use_modifier] = true unless opts.has_key? :use_modifier
     opts[:min_syllables] ||= 3
@@ -20,6 +22,7 @@ class FakeBritishToponym < String
   private
 
   def build_name(min_syllables, use_modifier)
+    # @todo bless syllables into an object
     syllables = [ CORPUS.random_prefix.capitalize ]
     (min_syllables-1).times do
       syllables.push pick_infix(syllables)
@@ -67,13 +70,13 @@ class FakeBritishToponym < String
     begin
       infix = CORPUS.random_infix
     end while infix == list.last # try not to double up syllables
-    double_last_letter(list) if doubled_last_letter_needed?(list, infix)
+    double_last_letter!(list) if doubled_last_letter_needed?(list, infix)
     infix
   end
 
   def pick_suffix(list)
     suffix = CORPUS.random_suffix
-    double_last_letter(list) if doubled_last_letter_needed?(list, suffix)
+    double_last_letter!(list) if doubled_last_letter_needed?(list, suffix)
     suffix
   end
 
@@ -89,18 +92,18 @@ class FakeBritishToponym < String
   end
 
   def begins_with_vowel?(word)
-    word.match(/^[aeiou]/)
+    word.match %r{^[aeiou]}
   end
 
   def ends_with_vowel?(word)
-    word.match(/[aeiou]$/)
+    word.match %r{[aeiou]$}
   end
 
   def ends_with_doubled_letters?(word)
     word[-1] == word[-2]
   end
 
-  def double_last_letter(list)
+  def double_last_letter!(list)
     last_piece = list.pop
     last_piece_doubled = last_piece + last_piece[-1]
     list.push last_piece_doubled

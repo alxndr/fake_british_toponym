@@ -1,13 +1,31 @@
 class FakeBritishToponym < String
+
+  # Collection of toponym roots, with helpers
+  # @since 0.1.1
+
   module CORPUS
 
-    %w(ante pre in suf post).each do |type|
-      method_name = "random_#{type}fix"
+    # Define a method that picks a random element from a corpus
+    # and make it available to be called from outside...
+    # @param whichfix [String] name of the corpus to use
+    # @return [Symbol] the method name symbol
+    def self.define_random_accessor(whichfix)
+      method_name = "random_#{whichfix.downcase}"
+      corpus_name = "#{whichfix.upcase}ES"
       define_method(method_name) do
-        CORPUS.const_get("#{type.upcase}FIXES").sample
+        const_get(corpus_name).sample
       end
       module_function method_name.to_sym
     end
+
+    # @!macro [attach] define_random_accessor
+    #   @method random_$1()
+    #   @return [String] a random $1
+    define_random_accessor :antefix
+    define_random_accessor :prefix
+    define_random_accessor :infix
+    define_random_accessor :postfix
+    define_random_accessor :suffix
 
     ANTEFIXES = %w(
       east
@@ -214,4 +232,5 @@ class FakeBritishToponym < String
     )
 
   end
+
 end
